@@ -5,10 +5,20 @@ import asgardeo from "../assets/asgardeo.png";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
+import { useAuthContext, Hooks } from "@asgardeo/auth-react";
+import { useEffect } from "react";
+
 function Home() {
   const navigate = useNavigate();
+  const { on, state, signIn } = useAuthContext();
 
-  const navgateToDashboard = () => {
+  useEffect(() => {
+    on(Hooks.SignIn, () => {
+      navigate("/dashboard");
+    });
+  }, [on]);
+
+  const navigateToDashboard = () => {
     navigate("/dashboard");
   };
 
@@ -34,16 +44,17 @@ function Home() {
       </div>
       <h1>Vite + React</h1>
       <h1>Home Page</h1>
+      <h2>Authenticated : {String(state?.isAuthenticated)}</h2>
       <div className="card">
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
-        {/*<input
+        <input
           type="button"
-          value="Dashboard >>"
+          value="DASHBOARD"
           className="button"
-          onClick={navgateToDashboard}
-        />*/}
+          onClick={navigateToDashboard}
+        />
       </div>
 
       <p className="read-the-docs">

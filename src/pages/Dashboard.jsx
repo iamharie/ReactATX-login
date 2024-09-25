@@ -4,7 +4,10 @@ import capitalFac from "../assets/cap.png";
 import asgardeo from "../assets/asgardeo.png";
 import "../App.css";
 
+import { useAuthContext } from "@asgardeo/auth-react";
+
 function Dashboard() {
+  const { signOut } = useAuthContext();
   return (
     <div className="dashboard">
       <div>
@@ -31,6 +34,14 @@ function Dashboard() {
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
+        <input
+          type="button"
+          value="Logout >>"
+          className="button"
+          onClick={() => {
+            signOut();
+          }}
+        />
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
