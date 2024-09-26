@@ -12,15 +12,15 @@ function Home() {
   const navigate = useNavigate();
   const { on, state, signIn } = useAuthContext();
 
-  useEffect(() => {
-    on(Hooks.SignIn, () => {
-      navigate("/dashboard");
-    });
-  }, [on]);
+  // useEffect(() => {
+  //   on(Hooks.SignIn, () => {
+  //     navigate("/dashboard");
+  //   });
+  // }, [on]);
 
-  const navigateToDashboard = () => {
-    navigate("/dashboard");
-  };
+  // const navigateToDashboard = () => {
+  //   navigate("/dashboard");
+  // };
 
   return (
     <div className="home">
@@ -53,7 +53,7 @@ function Home() {
           type="button"
           value="DASHBOARD"
           className="button"
-          onClick={navigateToDashboard}
+          onClick={() => signIn()}
         />
       </div>
 
